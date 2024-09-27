@@ -15,8 +15,6 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"Date: {_date.ToShortDateString()}");
-        Console.WriteLine($"Prompt: {_promptText}");
-        Console.WriteLine($"Entry: {_entryText}");
+        Console.WriteLine($"{_date.ToShortDateString()} {_promptText} {_entryText}");
     }
 }
