@@ -26,8 +26,7 @@ class Program
             {
                 case "1":
                     string prompt = promptGenerator.GetRandomPrompt();
-                    Console.WriteLine($"Prompt: {prompt}");
-                    Console.Write("Your response: ");
+                    Console.WriteLine(prompt);
                     string response = Console.ReadLine();
                     journal.AddEntry(new Entry(DateTime.Now, prompt, response));
                     break;
@@ -52,7 +51,12 @@ class Program
                     break;
             }
         }
+        // Exceeding core requirements.
+        // Add a reminder to come back tomorrow using Datetime.
+        DateTime now = DateTime.Now;
+        DateTime tomorrow = now.AddDays(1);
 
         Console.WriteLine("Thank you for using the Journal Program!");
+        Console.WriteLine($"Reminder: Come back tomorrow at {tomorrow.ToString("yyyy-MM-dd HH:mm:ss")}");
     }
 }

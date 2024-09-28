@@ -31,7 +31,7 @@ public class Journal
         {
             foreach (var entry in _entries)
             {
-                writer.WriteLine($"{entry._date.ToShortDateString()}|{entry._promptText}|{entry._entryText}");
+                writer.WriteLine($"{entry._date.ToShortDateString()}, {entry._promptText}, {entry._entryText}");
             }
         }
         Console.WriteLine("Journal saved successfully.");
