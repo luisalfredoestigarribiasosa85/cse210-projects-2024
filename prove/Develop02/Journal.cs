@@ -39,7 +39,6 @@ public class Journal
 
     public void LoadFromFile(string file)
     {
-        _entries.Clear();
         try
         {
             using (StreamReader reader = new StreamReader(file))
@@ -58,6 +57,7 @@ public class Journal
                 }
             }
             Console.WriteLine("Journal loaded successfully.");
+            DisplayAll();
         }
         catch (FileNotFoundException)
         {
