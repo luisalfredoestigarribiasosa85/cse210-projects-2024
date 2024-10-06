@@ -9,33 +9,41 @@ class Program
 
         Scripture scripture = new Scripture(reference, verseText);
 
+        int attempts = 0;
+        Console.Write("Enter the number of attempts as goal: ");
+        int maxAttempts = int.Parse(Console.ReadLine());
+
         bool continueHiding = true;
 
-        while (continueHiding)
+        // Exceeding core requirements
+        // This adds a competitive component, making the user try to memorize the passage with fewer attempts or in less time.
+        while (continueHiding && !scripture.IsCompletelyHidden() && attempts < maxAttempts)
         {
             Console.Clear();
             Console.WriteLine(scripture.GetDisplayText());
 
-            if (!scripture.IsCompletelyHidden())
-            {
-                Console.WriteLine("\nPress Enter to hide more words, or type 'quit' to exit.");
-                string input = Console.ReadLine();
+            Console.WriteLine($"\nAttempt {attempts + 1}/{maxAttempts}");
+            Console.WriteLine("Press Enter to hide more words, or type 'quit' to exit.");
+            string input = Console.ReadLine();
 
-                if (input.ToLower() == "quit")
-                {
-                    continueHiding = false;
-                }
-                else
-                {
-                    Random randomNumber = new Random();
-                    scripture.HideRandomWords(randomNumber.Next(4));
-                }
+            if (input.ToLower() == "quit")
+            {
+                continueHiding = false;
             }
             else
             {
-                Console.Clear();
-                continueHiding = false;
+                scripture.HideRandomWords(2);
+                attempts++;
             }
+        }
+
+        if (attempts >= maxAttempts)
+        {
+            Console.WriteLine("\nYou have reached the maximum number of attempts. The program will end.");
+        }
+        else if (scripture.IsCompletelyHidden())
+        {
+            Console.WriteLine("\nAll words are hidden. Program will now exit.");
         }
     }
 }
